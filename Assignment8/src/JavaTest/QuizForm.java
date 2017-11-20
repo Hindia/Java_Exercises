@@ -115,11 +115,12 @@ public class QuizForm extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         q=collection.getQuestions().get(collection.getX());
         if(jTextField1.getText()!=null){
-            if(q.check(jTextField1.getText())==true){
+            if(q.check(jTextField1.getText())==true)
                 jLabel1.setText("Correct!");
-                collection.getQuestions().remove(collection.getX());}
+                
             else
              jLabel1.setText("Wrong!");
+        collection.getQuestions().remove(collection.getX());
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -127,6 +128,7 @@ public class QuizForm extends javax.swing.JFrame {
 
     //Next button
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        if(jTextField1.getText()!=null)
         collection.setMax(4-i);
         i = i + 1;
         if (i == 6) {
