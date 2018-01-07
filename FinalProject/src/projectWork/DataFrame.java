@@ -5,7 +5,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.awt.event.*;
 import java.awt.*;
-
+// this class forms the frame which the application will show on start. It uses the methods in the Consumption panel class to perform some useful actions like drawing.
 public class DataFrame extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
@@ -15,11 +15,12 @@ public class DataFrame extends JFrame implements ActionListener{
 	 private final JFileChooser fileDialog = new JFileChooser(); //standard file dialog
 	 private final JLabel statusLabel = new JLabel(""); //label for a status bar
 	 
-	private ConsumptionPanel messagePanel = new ConsumptionPanel();
+	private ConsumptionPanel messagePanel = new ConsumptionPanel();	//object of the consumption panel created
 
-	private JTextField ConsumptionVal=new JTextField(3);	//text field added
+	private JTextField ConsumptionVal=new JTextField(3);	//text fields added
 	private JTextField MonthVal=new JTextField(2);
 	
+	//constructor method
 	public DataFrame() {
 
 		setTitle("Data Consumption");
@@ -79,6 +80,7 @@ public class DataFrame extends JFrame implements ActionListener{
 	}  
 	//HashMap created for saving the data
 	HashMap<Integer,Integer> data=new HashMap<>();
+	
 	//Ending the execution
     private void doExit() {
         this.dispose(); //close the frame and release resources
@@ -98,7 +100,12 @@ public class DataFrame extends JFrame implements ActionListener{
                     String[] in=line.split(":");
                     int in1=Integer.parseInt(in[0]); 
                     int in2=Integer.parseInt(in[1]); 
-                    messagePanel.setConsumption(in2, in1);	//gets data from file and sends it to be drawn
+                    if(in1< 12){
+    					messagePanel.setConsumption(in2,in1);//gets data from file and sends it to be drawn
+    				}
+    				else
+    					JOptionPane.showMessageDialog(this, "Month can't be greater than 12",
+    							"Error", JOptionPane.ERROR_MESSAGE);
                 }
                 
             } 
@@ -124,11 +131,12 @@ public class DataFrame extends JFrame implements ActionListener{
         }
     }
             
-    //New file
+    //Opens a New file
     private void doNew() {
     	messagePanel.clears();
         statusLabel.setText("New File opened");
     }
+    
     
 	public void actionPerformed(ActionEvent evt) {
 		//Gets the command text on the button which was clicked
@@ -138,11 +146,16 @@ public class DataFrame extends JFrame implements ActionListener{
 			try{
 				int input1= Integer.parseInt((ConsumptionVal.getText()));
 				int input2= Integer.parseInt((MonthVal.getText()));
-				data.put(input2, input1);
-				messagePanel.setConsumption(input1,input2);
+				if(input2< 12){
+					data.put(input2, input1);
+					messagePanel.setConsumption(input1,input2);
+				}
+				else
+					JOptionPane.showMessageDialog(this, "Month can't be greater than 12",
+							"Error", JOptionPane.ERROR_MESSAGE);
 			}
 			catch(NumberFormatException e){
-				JOptionPane.showMessageDialog(this, "Error. Please try again",
+				JOptionPane.showMessageDialog(this, "Please insert an integer",
 						"Error", JOptionPane.ERROR_MESSAGE);
 
 			}

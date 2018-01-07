@@ -5,12 +5,12 @@ package projectWork;
  */
 import java.awt.*;
 import javax.swing.*;
-
+// this class uses the distribution class to get the values of the data distribution in order to draw the bars and print the necessary values
 public class ConsumptionPanel extends JPanel{
 
 	private static final long serialVersionUID = 1L;
 
-	DataDistribution d1=new DataDistribution(12,1);
+	DataDistribution d1=new DataDistribution(12,1);	//object of the distribution class
 
 	public ConsumptionPanel() {
 		setBackground(Color.gray);
@@ -33,10 +33,10 @@ public class ConsumptionPanel extends JPanel{
 		g.setColor(Color.BLACK);
 		g.drawString("Consumption(KWh)", 20, 45);
 		g.drawString("2018 G.C", 150, 15);
-		g.drawLine(25, 50, 25, 400);//y axis::x1,y1,x2,y2
+		g.drawLine(25, 50, 25, 400);//y axis of the graph::x1,y1,x2,y2
 		g.drawString("200", 5, 200);
 		g.drawString("300", 5, 100);
-		g.drawLine(25, 400, 400, 400);//x axis
+		g.drawLine(25, 400, 400, 400);//x axis of the graph::x1,y1,x2,y2
 		g.drawString("100", 5, 300);
 		g.setFont(new Font("Lucida Sans", Font.BOLD, 12));
 		g.drawString("Jan", 35, 420);
@@ -47,18 +47,18 @@ public class ConsumptionPanel extends JPanel{
 		g.drawString("June", 185, 420);
 		g.drawString("July", 215, 420);
 		g.drawString("Aug", 245, 420);
-		g.drawString("Sep", 275, 420);	//string,x,y
+		g.drawString("Sep", 275, 420);	
 		g.drawString("Oct", 305, 420);
 		g.drawString("Nov", 335, 420);
 		g.drawString("Dec", 365, 420);
 
-		//prints average and total
+		//prints max, min, average and total
 		g.setFont(new Font("Lucida Sans", Font.BOLD, 14));
 		g.drawString("Min="+d1.Min(),370, 25);
 		g.drawString("Max="+d1.Max(), 370, 45);
 		g.drawString("Total="+d1.total(), 370, 65);
 		g.drawString("Avg="+ String.format("%.2f", d1.average()) , 370, 85);
-		g.setColor(Color.white);	//bar color changes to red
+		g.setColor(Color.white);	//bar color changes to white
 		//Jan
 		g.drawRect(35, 400-(d1.val(0)), 25,d1.val(0) );	//x,y(top),w,h
 		g.fillRect(35, 400-(d1.val(0)), 25,d1.val(0) );	//x,y,w,h
@@ -74,10 +74,10 @@ public class ConsumptionPanel extends JPanel{
 		//May
 		g.drawRect(155, 400-(d1.val(4)), 25, d1.val(4) );
 		g.fillRect(155, 400-(d1.val(4)), 25, d1.val(4) );
-		//JUne
+		//June
 		g.drawRect(185, 400-(d1.val(5)), 25, d1.val(5) );
 		g.fillRect(185, 400-(d1.val(5)), 25, d1.val(5) );
-		//JUly
+		//July
 		g.drawRect(215, 400-(d1.val(6)), 25, d1.val(6) );
 		g.fillRect(215, 400-(d1.val(6)), 25, d1.val(6) );
 		//August
@@ -86,7 +86,7 @@ public class ConsumptionPanel extends JPanel{
 		//September
 		g.drawRect(275, 400-(d1.val(8)), 25, d1.val(8) );
 		g.fillRect(275, 400-(d1.val(8)), 25, d1.val(8) );
-		//OCt
+		//Oct
 		g.drawRect(305, 400-(d1.val(9)), 25, d1.val(9) );
 		g.fillRect(305, 400-(d1.val(9)), 25, d1.val(9) );
 		//Nov

@@ -1,5 +1,5 @@
 package projectWork;
-
+// distribution class to use the object of this class to calculate the max, min, total and average as well as clearing purposes
 public class DataDistribution {
 
 	//variable declarations
@@ -10,7 +10,7 @@ public class DataDistribution {
 	public DataDistribution(int max, int min){
 		this.max=max;
 		this.min=min;
-		MonArr=new int[(max-min)+1];
+		this.MonArr=new int[(max-min)+1];
 	}	
 	//setters and getters
 	public int getMin() {
@@ -43,7 +43,7 @@ public class DataDistribution {
 			MonArr[m-1]=MonArr[m-1]+x;
 		}
 	}
-
+	//returns the value in the array
 	public int val(int y){
 		return MonArr[y]; 
 	} 
@@ -81,6 +81,7 @@ public class DataDistribution {
 		}
 		return maxim;
 	}
+	//resets the sack
 	public void clear(){
 		for(int i=0;i<12;i++){
 			if(MonArr[i]!=0)
